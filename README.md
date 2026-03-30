@@ -1,2 +1,19 @@
 # scope2_calculation
-Calculate scope 2 emissions
+
+## Objective
+Calculate Scope 2 emissions from energy consumption data.
+
+## Methodology
+GHG Protocol (location-based and market-based approach)
+
+## Data
+Electricity and heat consumption data
+
+## Results
+Total emissions: X tCO₂e
+
+## Scenario Analysis
+Switching ultra-low freezer (ULT) temperature from -80 C to -70 C reduces emissions by X%
+
+## Key Insights
+One little change can already produce a measurable reduction of CO2eq emissions
