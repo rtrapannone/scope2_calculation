@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[8]:
-
-
 def scope2(electricity,heat,ef_location,ef_market):
     consumption=electricity+heat
     location_based=consumption*ef_location
@@ -16,8 +10,6 @@ def scope2(electricity,heat,ef_location,ef_market):
 ## It returns the scope2 CO2eq expressed in kg
 ## Example: scope2(5000,2000,0.3,0.2) -> Returns: Location-based scope 2 emissions: 2100.0 kgCO2eq; Market-based scope 2 emissions: 4000.0 kgCO2eq
 
-
-# In[ ]:
 
 
 
