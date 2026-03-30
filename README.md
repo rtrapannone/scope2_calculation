@@ -10,7 +10,7 @@ GHG Protocol (location-based and market-based approach)
 Electricity and heat consumption data
 
 ## Results
-Total emissions: X tCO₂e
+Total emissions: X kgCO2eq
 
 ## Scenario Analysis
 Switching ultra-low freezer (ULT) temperature from -80 C to -70 C reduces emissions by X%
