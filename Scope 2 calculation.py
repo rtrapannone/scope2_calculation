@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
  
@@ -13,11 +7,22 @@ def scope2(electricity, ef_location, ef_market):
     print("Location-based scope 2 electricity emissions: " + str(location_based) + " tCO2eq")
     print("Market-based scope 2 electricity emissions: " + str(market_based) + " tCO2eq")
  
-    # ── Chart styling (matching reference figure) ──────────────────────────
-    BLUE   = "#5B9BD5"   # same family as the reference chart blue
-    ORANGE = "#E07B54"   # same family as the reference chart orange
+    # ── Chart styling ──────────────────────────────────────────────────────
+    BLUE   = "#5B9BD5"
+    ORANGE = "#E07B54"
  
-    fig, ax = plt.subplots(figsize=(10, 7))
+    plt.rcParams.update({
+        "font.family":      "sans-serif",
+        "font.size":        14,
+        "axes.titlesize":   18,
+        "axes.titleweight": "bold",
+        "axes.labelsize":   15,
+        "xtick.labelsize":  14,
+        "ytick.labelsize":  14,
+        "legend.fontsize":  13,
+    })
+ 
+    fig, ax = plt.subplots(figsize=(11, 8))
     fig.patch.set_facecolor("white")
     ax.set_facecolor("white")
  
@@ -41,14 +46,24 @@ def scope2(electricity, ef_location, ef_market):
             bar.get_height() / 2,
             f"{val:.2f} tCO₂eq",
             ha="center", va="center",
-            fontsize=13, fontweight="bold", color="white",
+            fontsize=15, fontweight="bold", color="white",
+        )
+ 
+    # Value labels above bars
+    for bar, val in zip(bars, bar_values):
+        ax.text(
+            bar.get_x() + bar.get_width() / 2,
+            bar.get_height() + max(bar_values) * 0.02,
+            f"{val:.2f}",
+            ha="center", va="bottom",
+            fontsize=13, fontweight="bold", color="#333333",
         )
  
     # ── Axes formatting ────────────────────────────────────────────────────
     ax.set_xticks(bars_x)
-    ax.set_xticklabels(bar_labels, fontsize=13, fontfamily="DejaVu Sans")
-    ax.set_ylabel("Emissions (tCO₂eq)", fontsize=12, labelpad=10)
-    ax.set_ylim(0, max(bar_values) * 1.25 if max(bar_values) > 0 else 1)
+    ax.set_xticklabels(bar_labels, fontfamily="DejaVu Sans")
+    ax.set_ylabel("Emissions (tCO₂eq)", labelpad=12)
+    ax.set_ylim(0, max(bar_values) * 1.30 if max(bar_values) > 0 else 1)
  
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
@@ -70,29 +85,22 @@ def scope2(electricity, ef_location, ef_market):
         frameon=True,
         framealpha=0.9,
         edgecolor="#cccccc",
-        fontsize=11,
     )
  
     # ── Title ──────────────────────────────────────────────────────────────
     ax.set_title(
         "Scope 2 electricity emissions\n(location-based vs. market-based)",
-        fontsize=14, fontweight="bold", pad=15,
+        pad=18,
         fontfamily="DejaVu Sans",
     )
  
-    plt.tight_layout()
+    plt.tight_layout(pad=2)
     plt.savefig("chart1_electricity_emissions.png", dpi=150, bbox_inches="tight")
     plt.show()
     
-
-## For running the function call the function by inserting the electricity consumption expressed in kWh during the reporting year 
+ 
+ 
+## For running the function call the function by inserting the electricity consumption expressed in kWh during the reporting year
 ## and the two emission factors expressed in kgCO2eq/kWh
-## It returns the scope2 CO2eq realted to electricity expressed in t
-## Example: scope2(5000,0.3,0.2) -> Returns: Location-based scope 2 electricity emissions: 1.5 tCO2eq; Market-based scope 2 electricity emissions: 1.0 tC
-
-
-# In[ ]:
-
-
-
-
+## It returns the scope2 CO2eq related to electricity expressed in t
+## Example: scope2(5000, 0.3, 0.2) -> Returns: Location-based: 1.5 tCO2eq; Market-based: 1.0 tCO2eq
